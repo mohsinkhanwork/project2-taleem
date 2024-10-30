@@ -5,10 +5,9 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
-Route::get('/login', [AuthController::class, 'redirectToProvider']);
+Route::get('/login', [AuthController::class, 'redirectToProvider'])->name('login');
 Route::get('/callback', [AuthController::class, 'handleProviderCallback']);
-Route::get('/', function () {
-    return session('user') ? 'Logged In' : 'Not Logged In';
-});
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
