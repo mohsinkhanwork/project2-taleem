@@ -38,7 +38,8 @@ return [
     'keycloak' => [
         'client_id' => env('KEYCLOAK_CLIENT_ID'),
         'client_secret' => env('KEYCLOAK_CLIENT_SECRET'),
-        'redirect' => env('APP_URL') . '/callback',
+        'redirect' => env('KEYCLOAK_REDIRECT_URI'),
+        'base_url' => env('KEYCLOAK_BASE_URL'),
         'authorize_url' => 'http://localhost:8080/realms/SSO-Demo/protocol/openid-connect/auth',
         'token_url' => 'http://localhost:8080/realms/SSO-Demo/protocol/openid-connect/token',
         'user_info_url' => 'http://localhost:8080/realms/SSO-Demo/protocol/openid-connect/userinfo',

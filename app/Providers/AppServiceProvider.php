@@ -27,12 +27,19 @@ class AppServiceProvider extends ServiceProvider
                 $config = $app['config']['services.keycloak'];
 
                 return new KeycloakProvider(
-                    $app['request'], // Pass the request object here
+                    $app['request'],
                     $config['client_id'],
                     $config['client_secret'],
-                    $config['redirect']
+                    $config['redirect'],
+                    [
+                        'base_url' => $config['base_url'],
+                        'authorize_url' => $config['base_url'] . '/protocol/openid-connect/auth',
+                        'token_url' => $config['base_url'] . '/protocol/openid-connect/token',
+                        'userinfo_url' => $config['base_url'] . '/protocol/openid-connect/userinfo',
+                    ]
                 );
             }
         );
     }
 }
+
